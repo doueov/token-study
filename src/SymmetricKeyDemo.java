@@ -47,5 +47,7 @@ public class SymmetricKeyDemo {
         System.out.println(encrypted);
         System.out.println(decrypted);
 
+
+
     }
 }
