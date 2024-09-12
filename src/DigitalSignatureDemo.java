@@ -1,4 +1,3 @@
-import java.security.PrivateKey;
 import java.nio.charset.StandardCharsets;
 import java.security.*;
 
@@ -18,9 +17,12 @@ public class DigitalSignatureDemo {
     }
 
     public static void main(String[] args) throws Exception {
-
-
+        KeyPairGenerator keyGen = KeyPairGenerator.getInstance("RSA");
+        keyGen.initialize(2048);
+        KeyPair keyPair = keyGen.generateKeyPair();
+        byte[] data = "Hello".getBytes(StandardCharsets.UTF_8);
+        byte[] signatureBytes = sign(data, keyPair.getPrivate());
+        boolean isValid = verify(data, signatureBytes, keyPair.getPublic());
+        System.out.println(isValid);
     }
-
 }
-
